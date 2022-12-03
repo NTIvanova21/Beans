@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h>
+#include "sudoku.h"
 
 using namespace std;
 
@@ -23,3 +24,4 @@ void drawHelpMenu();
 void drawExitGame();
 
 void drawMenu();
+
