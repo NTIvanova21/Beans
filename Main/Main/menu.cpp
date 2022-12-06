@@ -112,12 +112,97 @@ void drawBoard()
 }
 
 
+void addTwentyFiveSpaces()
+{
+    for (int i = 0; i < 25; i++)
+    {
+        cout << " ";
+    }
+}
+
+void addFiftyFiveSpaces()
+{
+    for (int i = 0; i < 55; i++)
+    {
+        cout << " ";
+    }
+}
+void addHundredAndTwentyDashes()
+{
+    for (int i = 0; i < 120; i++)
+    {
+        cout << "-";
+    }
+}
 
 void drawHelpMenu()
 {
     system("cls");
+    // Add heading to the help menu
+    for (int i = 0; i < 56; i++)
+    {
+        cout << " ";
+    }
 
-    cout << "To play game be good at game!";
+    cout << "+-------------+" << endl;
+
+    for (int i = 0; i < 56; i++)
+    {
+        cout << "-";
+    }
+    cout << "|SUDOKU HELPER|";
+    for (int i = 0; i < 49; i++)
+    {
+        cout << "-";
+    }
+    cout << endl;
+    for (int i = 0; i < 56; i++)
+    {
+        cout << " ";
+    }
+    cout << "+-------------+" << endl;
+
+    cout << endl;
+
+    // Add text for what is sudoku
+    addFiftyFiveSpaces();
+
+    cout << "What is a sudoku?" << endl;
+    cout << endl;
+    addTwentyFiveSpaces();
+
+    cout << "The sudoku consists of a 9x9 grid further divided into nine 3x3 sub-grids." << endl;
+    addHundredAndTwentyDashes();
+    // Add text for what the goal of the game is
+    cout << endl;
+
+    addFiftyFiveSpaces();
+    cout << "The goal of the game";
+    
+    for (int i = 0; i < 2; i++)
+    {
+        cout << endl;
+    }
+    cout << "\tThe goal of sudoku is simple: fill in the numbers 1-9 exactly once in every row, column, and 3x3 region." << endl;
+
+
+    addHundredAndTwentyDashes();
+    for (int i = 0; i < 2; i++)
+    {
+        cout << endl;
+    }
+
+    // Add text for the rules
+
+    cout << "The rules:" << endl;
+    cout << endl;
+
+    cout << "1. Use only numbers between 1 and 9." << endl;
+
+    cout << "2. Don't repeat numbers in one of the box." << endl;
+
+    cout << "3. You must have each number exactly once in every column and row." << endl;
+    addHundredAndTwentyDashes();
 
     for (int i = 0; i < 5; i++)
     {
@@ -130,11 +215,9 @@ void drawHelpMenu()
     {
     case KEY_ESC:
         chose = 1;
-        drawSudokiMenu(); 
-
+        drawSudokiMenu();
         break;
     }
-    
 }
 
 void drawExitGame()
