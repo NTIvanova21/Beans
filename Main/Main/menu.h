@@ -27,8 +27,3 @@ void drawExitGame();
 
 void drawMenu();
 
-void addTwentyFiveSpaces();
-
-void addFiftyFiveSpaces();
-
-void addHundredAndTwentyDashes();
