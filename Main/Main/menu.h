@@ -1,5 +1,7 @@
 #include <iostream>
 #include <conio.h>
+#include <string>
+#include <iomanip>
 #include "sudoku.h"
 
 using namespace std;
