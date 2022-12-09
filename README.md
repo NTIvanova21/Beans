@@ -1,7 +1,7 @@
 <p align = "center">
-  <img src="Documentation/Logo/LogoWithoutBackground.png#gh-dark-mode-only" width="500" text-align="center">
-  <img src="Documentation/Logo/Logo1.png#gh-light-mode-only"width="500" text-align="center">
+  <img src="https://github.com/NTIvanova21/Beans/blob/main/Documentation/Logo/logo.svg" width="300" text-align="center">
 </p>
+
 <hr>
 
 # 📖 About the game 
