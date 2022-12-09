@@ -35,18 +35,6 @@ void sudokuTemplate()
     }
 }
 
-int play() {
-    cout << endl;
-    cin >> row >> col >> num;
-    row--;
-    col--;
-    if (num >= 0 and num <= 9) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
-}
 
 int check_row(int row)
 {
@@ -179,4 +167,20 @@ void fill_random()
             continue;
         }
     }
+}
+int checkResult() {
+    for (int i = 0; i < 9; i++) {
+        if (check_row(i) == 0) {
+            return 0;
+        }
+    }
+    for (int i = 0; i < 9; i++) {
+        if (check_col(i) == 0) {
+            return 0;
+        }
+    }
+    if (checkBox() == 0) {
+        return 0;
+    }
+    return 1;
 }
