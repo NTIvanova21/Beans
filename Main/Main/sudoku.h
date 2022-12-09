@@ -6,6 +6,8 @@ using namespace std;
 
 void sudokuTemplate();
 
+int play();
+
 int check_row(int row);
 
 int check_col(int col);
