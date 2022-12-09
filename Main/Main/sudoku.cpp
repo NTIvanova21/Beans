@@ -138,3 +138,45 @@ int check_box_random() {
     return 1;
 }
 
+void fill_random()
+{
+    
+    srand(time(0));
+
+    int ran = (rand() % 20) + 5;
+    for (int i = 1; i < ran; i++)
+    {
+        int digit = rand() % 10;
+        int r = rand() % 10, c = rand() % 10;
+
+        if (grid[r][c] != digit)
+        {
+            int count = 0;
+            grid[r][c] = digit;
+            for (int i = 0; i < 9; i++) {
+                if (grid[r][i] == digit) {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                grid[r][c] = 0;
+            }
+            count = 0;
+            for (int i = 0; i < 9; i++) {
+                if (grid[i][c] == digit) {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                grid[r][c] = 0;
+            }
+            if (check_box_random() == 0) {
+                grid[r][c] = 0;
+            }
+        }
+        else {
+            
+            continue;
+        }
+    }
+}
