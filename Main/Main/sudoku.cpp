@@ -48,5 +48,93 @@ int play() {
     }
 }
 
+int check_row(int row)
+{
 
+    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    for (int j = 0; j < 9; j++) {
+        arr[grid[row][j]]++;
+    }
+    for (int k = 0; k < 9; k++) {
+        if (arr[k] != 1) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int check_col(int col) {
+    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    for (int j = 0; j < 9; j++) {
+        arr[grid[j][col]]++;
+    }
+    for (int k = 1; k < 10; k++) {
+        if (arr[k] != 1) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void resetArray(int arr[]) {
+    for (int i = 0; i < 9; i++)
+    {
+        arr[i] = 0;
+    }
+}
+
+int checkBox() {
+    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, counterRow = 3, counterCol = 3, valueRow = 0, valueCol = 0;
+    while (valueRow <= 6)
+    {
+        for (int i = valueRow; i < counterRow; i++) {
+            for (int j = 0; j < counterCol; j++) {
+                arr[grid[i][j]]++;
+            }
+        }
+        for (int k = 1; k < 10; k++) {
+            if (arr[k] != 1) {
+                return 0;
+            }
+        }
+        counterCol += 3;
+
+        if (counterCol == 9)
+        {
+            counterRow += 3;
+            counterCol = 0;
+            valueRow += 3;
+        }
+
+        resetArray(arr);
+    }
+    return 1;
+}
+int check_box_random() {
+    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, counterRow = 3, counterCol = 3, valueRow = 0, valueCol = 0;
+    while (valueRow <= 6)
+    {
+        for (int i = valueRow; i < counterRow; i++) {
+            for (int j = 0; j < counterCol; j++) {
+                arr[grid[i][j]]++;
+            }
+        }
+        for (int k = 1; k < 10; k++) {
+            if (arr[k] > 1) {
+                return 0;
+            }
+        }
+        counterCol += 3;
+
+        if (counterCol == 9)
+        {
+            counterRow += 3;
+            counterCol = 0;
+            valueRow += 3;
+        }
+
+        resetArray(arr);
+    }
+    return 1;
+}
 
