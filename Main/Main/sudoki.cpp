@@ -35,8 +35,12 @@ void sudokuTemplate()
 }
 
 int play() {
-    cout << endl;
-    cin >> row >> col >> num;
+    cout << endl << "Enter row number: ";
+    cin >> row;
+    cout << endl << "Enter column number: ";
+    cin >> col;
+    cout << endl << "Enter number: ";
+    cin >> num;
     row--;
     col--;
     if (num >= 0 and num <= 9) {
@@ -198,19 +202,16 @@ void drawSudoki()
     randomise();
     while (1) {
         system("cls");
-
-        sudokuTemplate();
-        while (play() == 0) {
-        }
-        grid[row][col] = num;
-
         if (checkResult() == 1) {
-            cout << "Congratulations!";
-        }
-        else {
-            cout << "You've lost.";
+            cout << "Congratulations!\n";
             sudokuTemplate();
             break;
         }
+        sudokuTemplate();
+        while (play() == 0) {
+
+        }
+        grid[row][col] = num;
+
     }
 }

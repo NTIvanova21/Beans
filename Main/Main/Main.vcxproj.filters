@@ -21,7 +21,7 @@
     <ClCompile Include="menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sudoku.cpp">
+    <ClCompile Include="sudoki.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sudoku.h">
+    <ClInclude Include="sudoki.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

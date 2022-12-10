@@ -180,7 +180,7 @@ void drawExitGame()
     }
 }
 
-void drawMenu() 
+int drawMenu() 
 {
     while (isGameRunning)
     {
@@ -194,10 +194,8 @@ void drawMenu()
 
         if (arrow == 0)
         {
-            while (chose == 0)
-            {
-                drawDifficultyMenu();
-            }
+            isGameRunning = false;
+            return 7;
         }
         else if (arrow == 1)
         {
