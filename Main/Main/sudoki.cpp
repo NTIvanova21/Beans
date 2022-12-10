@@ -1,6 +1,5 @@
-#include "sudoku.h"
+#include "sudoki.h"
 
-using namespace std;
 int grid[9][9] = { 0 }, row, col, num;
 
 
@@ -48,7 +47,7 @@ int play() {
     }
 }
 
-int check_row(int row)
+int checkRows(int row)
 {
 
     int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -63,7 +62,7 @@ int check_row(int row)
     return 1;
 }
 
-int check_col(int col) {
+int checkColumns(int col) {
     int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     for (int j = 0; j < 9; j++) {
         arr[grid[j][col]]++;
@@ -83,7 +82,7 @@ void resetArray(int arr[]) {
     }
 }
 
-int checkBox() {
+int checkGrid() {
     int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, counterRow = 3, counterCol = 3, valueRow = 0, valueCol = 0;
     while (valueRow <= 6)
     {
@@ -110,7 +109,7 @@ int checkBox() {
     }
     return 1;
 }
-int check_box_random() {
+int checkBoxRandom() {
     int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, counterRow = 3, counterCol = 3, valueRow = 0, valueCol = 0;
     while (valueRow <= 6)
     {
@@ -138,9 +137,9 @@ int check_box_random() {
     return 1;
 }
 
-void fill_random()
+void randomise()
 {
-    
+
     srand(time(0));
 
     int ran = (rand() % 20) + 5;
@@ -151,48 +150,67 @@ void fill_random()
 
         if (grid[r][c] != digit)
         {
-            int count = 0;
+            int counter = 0;
             grid[r][c] = digit;
             for (int i = 0; i < 9; i++) {
                 if (grid[r][i] == digit) {
-                    count++;
+                    counter++;
                 }
             }
-            if (count > 1) {
+            if (counter > 1) {
                 grid[r][c] = 0;
             }
-            count = 0;
+            counter = 0;
             for (int i = 0; i < 9; i++) {
                 if (grid[i][c] == digit) {
-                    count++;
+                    counter++;
                 }
             }
-            if (count > 1) {
+            if (counter > 1) {
                 grid[r][c] = 0;
             }
-            if (check_box_random() == 0) {
+            if (checkBoxRandom() == 0) {
                 grid[r][c] = 0;
             }
-        }
-        else {
-            
-            continue;
         }
     }
 }
+
 int checkResult() {
     for (int i = 0; i < 9; i++) {
-        if (check_row(i) == 0) {
+        if (checkRows(i) == 0) {
             return 0;
         }
     }
     for (int i = 0; i < 9; i++) {
-        if (check_col(i) == 0) {
+        if (checkColumns(i) == 0) {
             return 0;
         }
     }
-    if (checkBox() == 0) {
+    if (checkGrid() == 0) {
         return 0;
     }
     return 1;
+}
+
+void drawSudoki()
+{
+    randomise();
+    while (1) {
+        system("cls");
+
+        sudokuTemplate();
+        while (play() == 0) {
+        }
+        grid[row][col] = num;
+
+        if (checkResult() == 1) {
+            cout << "Congratulations!";
+        }
+        else {
+            cout << "You've lost.";
+            sudokuTemplate();
+            break;
+        }
+    }
 }

@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
@@ -8,16 +9,18 @@ void sudokuTemplate();
 
 int play();
 
-int check_row(int row);
+int checkRows(int row);
 
-int check_col(int col);
+int checkColumns(int col);
 
 void resetArray(int arr[]);
 
-int checkBox();
+int checkGrid();
 
-int check_box_random();
+int checkBoxRandom();
 
-void fill_random();
+void randomise();
 
 int checkResult();
+
+void drawSudoki();
