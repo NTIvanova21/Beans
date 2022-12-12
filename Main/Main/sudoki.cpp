@@ -1,17 +1,23 @@
 #include "sudoki.h"
 
-int grid[9][9] = { 0 }, row, col, num;
+int grid[9][9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, row, col, num;
 
+//Create the sudoku template
 
 void sudokuTemplate()
 {
-    int threeRowCounter = 0;
+    //Initiate a counter for every third column
+
+    int threeColCounter = 0;
+
     for (int i = 0; i < 9; i++)
     {
-        threeRowCounter = 0;
+
         for (int j = 0; j < 9; j++)
         {
-            threeRowCounter++;
+            threeColCounter++;
+
+            
             if (grid[i][j] == 0)
             {
                 cout << "-";
@@ -20,13 +26,19 @@ void sudokuTemplate()
             {
                 cout << grid[i][j];
             }
+
             cout << " ";
-            if (threeRowCounter % 3 == 0)
+
+            if (threeColCounter % 3 == 0)
             {
                 cout << "  ";
             }
         }
+
         cout << endl;
+
+        //once you've finished the third and 6th row you seperate them with a line
+
         if (i == 2 or i == 5)
         {
             cout << endl;
@@ -34,109 +46,71 @@ void sudokuTemplate()
     }
 }
 
-int play() {
+//Add the ability to insert numbers while giving clear instrunctions
+
+int play() 
+{
     cout << endl << "Enter row number: ";
+
     cin >> row;
+
     cout << endl << "Enter column number: ";
+
     cin >> col;
+
     cout << endl << "Enter number: ";
+
     cin >> num;
+
+    //Decrease the numbers entered by 1 so it can be converted to an index number
+
     row--;
     col--;
-    if (num >= 0 and num <= 9) {
+
+    //Check if the number entered is a valid sudoku number
+    if (num >= 0 and num <= 9) 
+    {
         return 1;
     }
-    else {
+    else 
+    {
         return 0;
     }
 }
 
-int checkRows(int row)
+//Check if each three by three grid has any repeating numbers
+
+int checkGrid() 
 {
-
-    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    for (int j = 0; j < 9; j++) {
-        arr[grid[row][j]]++;
-    }
-    for (int k = 0; k < 9; k++) {
-        if (arr[k] != 1) {
-            return 0;
+    int arr[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, temp;
+    
+    for (int i = 0; i < 9; i++) 
+    {
+        for (int j = 0; j < 9; j++) 
+        {
+            arr[i] = grid[i][j];
         }
     }
-    return 1;
-}
 
-int checkColumns(int col) {
-    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    for (int j = 0; j < 9; j++) {
-        arr[grid[j][col]]++;
-    }
-    for (int k = 1; k < 10; k++) {
-        if (arr[k] != 1) {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-void resetArray(int arr[]) {
+    //Make a bubble sort algorithm to check for repeating numbers easily
     for (int i = 0; i < 9; i++)
     {
-        arr[i] = 0;
-    }
-}
-
-int checkGrid() {
-    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, counterRow = 3, counterCol = 3, valueRow = 0, valueCol = 0;
-    while (valueRow <= 6)
-    {
-        for (int i = valueRow; i < counterRow; i++) {
-            for (int j = 0; j < counterCol; j++) {
-                arr[grid[i][j]]++;
-            }
-        }
-        for (int k = 1; k < 10; k++) {
-            if (arr[k] != 1) {
-                return 0;
-            }
-        }
-        counterCol += 3;
-
-        if (counterCol == 9)
+        for (int j = 0; j < 8 - i; j++)
         {
-            counterRow += 3;
-            counterCol = 0;
-            valueRow += 3;
+            if (arr[j] < arr[j + 1])
+            {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
         }
-
-        resetArray(arr);
     }
-    return 1;
-}
-int checkBoxRandom() {
-    int arr[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, counterRow = 3, counterCol = 3, valueRow = 0, valueCol = 0;
-    while (valueRow <= 6)
+    for (int i = 0; i < 8; i++)
     {
-        for (int i = valueRow; i < counterRow; i++) {
-            for (int j = 0; j < counterCol; j++) {
-                arr[grid[i][j]]++;
-            }
-        }
-        for (int k = 1; k < 10; k++) {
-            if (arr[k] > 1) {
-                return 0;
-            }
-        }
-        counterCol += 3;
-
-        if (counterCol == 9)
+        if (arr[i] != arr[i + 1])
         {
-            counterRow += 3;
-            counterCol = 0;
-            valueRow += 3;
+            return 0;
         }
-
-        resetArray(arr);
     }
     return 1;
 }
@@ -144,54 +118,42 @@ int checkBoxRandom() {
 void randomise()
 {
 
+    //Randomise every time the code is ran
     srand(time(0));
 
-    int ran = (rand() % 20) + 5;
-    for (int i = 1; i < ran; i++)
-    {
-        int digit = rand() % 10;
-        int r = rand() % 10, c = rand() % 10;
+    int number = (rand() % 9) + 1;
+    int row = (rand() % 9) + 1, column = (rand() % 9) + 1;
+    int counter = 0;
 
-        if (grid[r][c] != digit)
+    while(counter != 20)
+    {
+        if (grid[row][column] != number)
         {
-            int counter = 0;
-            grid[r][c] = digit;
-            for (int i = 0; i < 9; i++) {
-                if (grid[r][i] == digit) {
+            grid[row][column] = number;
+
+            for (int j = 0; j < 9; j++)
+            {
+                if (grid[row][j] == number)
+                {
                     counter++;
                 }
             }
-            if (counter > 1) {
-                grid[r][c] = 0;
-            }
-            counter = 0;
-            for (int i = 0; i < 9; i++) {
-                if (grid[i][c] == digit) {
+        }
+        for (int i = 0; i < 9; i++) 
+        {
+            if (grid[i][column] == number)
+            {
                     counter++;
-                }
-            }
-            if (counter > 1) {
-                grid[r][c] = 0;
-            }
-            if (checkBoxRandom() == 0) {
-                grid[r][c] = 0;
             }
         }
     }
 }
 
-int checkResult() {
-    for (int i = 0; i < 9; i++) {
-        if (checkRows(i) == 0) {
-            return 0;
-        }
-    }
-    for (int i = 0; i < 9; i++) {
-        if (checkColumns(i) == 0) {
-            return 0;
-        }
-    }
-    if (checkGrid() == 0) {
+int checkResult() 
+{
+
+    if (checkGrid() == 0) 
+    {
         return 0;
     }
     return 1;
@@ -202,15 +164,18 @@ void drawSudoki()
     randomise();
     while (1) {
         system("cls");
-        if (checkResult() == 1) {
-            cout << "Congratulations!\n";
-            sudokuTemplate();
-            break;
-        }
-        sudokuTemplate();
-        while (play() == 0) {
 
+        sudokuTemplate();
+        while (play() != 0) 
+        {
+            if (checkResult() == 0) 
+            {
+                cout << "Congratulations!\n";
+                sudokuTemplate();
+                break;
+            }
         }
+
         grid[row][col] = num;
 
     }

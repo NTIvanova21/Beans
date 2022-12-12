@@ -8,12 +8,6 @@ void sudokuTemplate();
 
 int play();
 
-int checkRows(int row);
-
-int checkColumns(int col);
-
-void resetArray(int arr[]);
-
 int checkGrid();
 
 int checkBoxRandom();
