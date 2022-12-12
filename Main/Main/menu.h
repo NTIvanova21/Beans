@@ -18,8 +18,6 @@ void pointerChange();
 
 void drawSudokiMenu();
 
-void drawDifficultyMenu();
-
 void drawHelpMenu();
 
 void drawExitGame();

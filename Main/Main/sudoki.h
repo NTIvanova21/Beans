@@ -6,14 +6,10 @@ using namespace std;
 
 void sudokuTemplate();
 
-int play();
+bool play();
 
-int checkGrid();
-
-int checkBoxRandom();
+bool canPlaceNumber(int row, int col, int num);
 
 void randomise();
-
-int checkResult();
 
 void drawSudoki();

@@ -1,23 +1,22 @@
 #include "sudoki.h"
 
-int grid[9][9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, row, col, num;
+int grid[9][9] = { 0 }, row, col, input;
 
-//Create the sudoku template
+int missing = 81;
 
+//Create the sudoku Template
 void sudokuTemplate()
 {
-    //Initiate a counter for every third column
-
-    int threeColCounter = 0;
+    //Initiate a counter which counts each third row
+    int threeRowCounter = 0;
 
     for (int i = 0; i < 9; i++)
     {
+        threeRowCounter = 0;
 
         for (int j = 0; j < 9; j++)
         {
-            threeColCounter++;
-
-            
+            threeRowCounter++;
             if (grid[i][j] == 0)
             {
                 cout << "-";
@@ -29,15 +28,13 @@ void sudokuTemplate()
 
             cout << " ";
 
-            if (threeColCounter % 3 == 0)
+            if (threeRowCounter % 3 == 0)
             {
                 cout << "  ";
             }
         }
 
         cout << endl;
-
-        //once you've finished the third and 6th row you seperate them with a line
 
         if (i == 2 or i == 5)
         {
@@ -46,137 +43,122 @@ void sudokuTemplate()
     }
 }
 
-//Add the ability to insert numbers while giving clear instrunctions
-
-int play() 
-{
+//Allow the player to input numbers 
+bool play() {
     cout << endl << "Enter row number: ";
-
     cin >> row;
 
     cout << endl << "Enter column number: ";
-
     cin >> col;
 
     cout << endl << "Enter number: ";
+    cin >> input;
 
-    cin >> num;
-
-    //Decrease the numbers entered by 1 so it can be converted to an index number
-
-    row--;
-    col--;
-
-    //Check if the number entered is a valid sudoku number
-    if (num >= 0 and num <= 9) 
+    //Check if the inputed number contains a number from 1 to 9
+    if (input >= 1 and input <= 9)
     {
-        return 1;
-    }
-    else 
-    {
-        return 0;
-    }
-}
-
-//Check if each three by three grid has any repeating numbers
-
-int checkGrid() 
-{
-    int arr[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, temp;
-    
-    for (int i = 0; i < 9; i++) 
-    {
-        for (int j = 0; j < 9; j++) 
+        //Check if the inputed row contains a number from 1 to 9
+        if (row >= 1 and row <= 9)
         {
-            arr[i] = grid[i][j];
-        }
-    }
-
-    //Make a bubble sort algorithm to check for repeating numbers easily
-    for (int i = 0; i < 9; i++)
-    {
-        for (int j = 0; j < 8 - i; j++)
-        {
-            if (arr[j] < arr[j + 1])
+            //Check if the inputed column contains a number from 1 to 9
+            if (col >= 1 and col <= 9)
             {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+                row--;
+                col--;
+
+                //Check if the number is repeated in either the same column, row or grid
+                return canPlaceNumber(row, col, input);
             }
         }
     }
-    for (int i = 0; i < 8; i++)
-    {
-        if (arr[i] != arr[i + 1])
-        {
-            return 0;
-        }
-    }
-    return 1;
+
+    return 0;
 }
 
+//Check whether you can place the inputed number into the wanted place
+bool canPlaceNumber(int row, int col, int num) {
+
+    //Check if the desired number has not already been entered
+    if (grid[row][col] != 0 && grid[row][col] != num) {
+        return false;
+    }
+
+    //Check if number is equal to 0
+    if (grid[row][col] != 0) {
+        return false;
+    }
+
+    //Check if the number already exists in the same row
+    for (int i = 0; i < 9; i++) {
+        if (grid[row][i] == num) {
+            return false;
+        }
+    }
+
+    //Check if the number already exists in the same column
+    for (int i = 0; i < 9; i++) {
+        if (grid[i][col] == num) {
+            return false;
+        }
+    }
+
+    int rowStart = (row / 3) * 3;
+    int colStart = (col / 3) * 3;
+
+    //Check if number already exists in the same grid
+    for (int i = rowStart; i < rowStart + 3; i++) {
+        for (int j = colStart; j < colStart + 3; j++) {
+            if (grid[i][j] == num) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+//Randomise numbers in the begining of the game
 void randomise()
 {
-
-    //Randomise every time the code is ran
+    //Generate a new seed each time the code is ran
     srand(time(0));
 
-    int number = (rand() % 9) + 1;
-    int row = (rand() % 9) + 1, column = (rand() % 9) + 1;
-    int counter = 0;
-
-    while(counter != 20)
+    for (int i = 0; i < 9; i++)
     {
-        if (grid[row][column] != number)
+        for (int j = 0; j < 9; j++)
         {
-            grid[row][column] = number;
+            //Randomise a number from 1 through 9
+            int num = rand() % 9 + 1;
 
-            for (int j = 0; j < 9; j++)
-            {
-                if (grid[row][j] == number)
-                {
-                    counter++;
-                }
-            }
-        }
-        for (int i = 0; i < 9; i++) 
-        {
-            if (grid[i][column] == number)
-            {
-                    counter++;
-            }
+            //Check if that number can be placed at the desired place
+            if (canPlaceNumber(i, j, num))
+                grid[i][j] = num;
         }
     }
-}
-
-int checkResult() 
-{
-
-    if (checkGrid() == 0) 
-    {
-        return 0;
-    }
-    return 1;
 }
 
 void drawSudoki()
 {
+    //Randomise the sudoku template
     randomise();
+
     while (1) {
         system("cls");
 
-        sudokuTemplate();
-        while (play() != 0) 
-        {
-            if (checkResult() == 0) 
-            {
-                cout << "Congratulations!\n";
-                sudokuTemplate();
-                break;
-            }
+        //Check if the player has finished filling up the sudoku
+        if (missing == 0) {
+            sudokuTemplate();
+            cout << endl << "Congratulations!\n";
+            break;
         }
 
-        grid[row][col] = num;
+        sudokuTemplate();
 
+        //Enter number in sudoku template
+        if (play() == 1)
+        {
+            grid[row][col] = input;
+            missing--;
+        }
     }
 }

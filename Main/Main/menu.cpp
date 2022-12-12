@@ -35,11 +35,11 @@ void pointerChange()
 
 void drawSudokiMenu()
 {
-    string menu[3] = {"Start", "Help", "Exit"};
+    string menu[3] = { "Start", "Help", "Exit" };
 
     system("cls");
 
-    cout << "Welcome to Sudoki noob version!";
+    cout << "Welcome to Sudoki!";
 
     for (int i = 0; i < 5; i++)
     {
@@ -59,35 +59,6 @@ void drawSudokiMenu()
     }
     pointerChange();
 
-}
-
-void drawDifficultyMenu()
-{
-
-    string menu[3] = { "Easy", "Medium", "Hard" };
-
-    system("cls");
-
-    cout << "Choose dificulty man.";
-
-    for (int i = 0; i < 5; i++)
-    {
-        cout << endl;
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
-        if (i == arrow)
-
-            cout << ">>" << menu[i] << endl;
-
-        else
-
-            cout << menu[i] << endl;
-
-    }
-    pointerChange();
-   
 }
 
 void drawHelpMenu()
@@ -108,7 +79,7 @@ void drawHelpMenu()
     {
         cout << "-";
     }
-    
+
     cout << endl << setw(71) << "+-------------+" << endl << endl;
 
     // Add text for what is sudoku
@@ -116,15 +87,15 @@ void drawHelpMenu()
     cout << setw(72) << "What is a sudoku?" << endl << endl;
 
     cout << setw(97) << "The sudoku consists of a 9x9 grid further divided into nine 3x3 sub-grids." << endl;
-    
+
     for (int i = 0; i < 120; i++) {
         cout << " ";
     }
-    
+
     // Add text for what the goal of the game is
 
     cout << endl << setw(75) << "The goal of the game" << endl << endl;
-    
+
     cout << "\tThe goal of sudoku is simple: fill in the numbers 1-9 exactly once in every row, column, and 3x3 region." << endl;
 
 
@@ -133,7 +104,7 @@ void drawHelpMenu()
     }
 
     cout << endl << endl;
-    
+
     // Add text for the rules
 
     cout << "The rules:" << endl << endl;
@@ -143,7 +114,7 @@ void drawHelpMenu()
     cout << "2. Don't repeat numbers in one of the box." << endl;
 
     cout << "3. You must have each number exactly once in every column and row." << endl;
-   
+
     for (int i = 0; i < 120; i++) {
         cout << " ";
     }
@@ -168,7 +139,7 @@ void drawExitGame()
 {
     system("cls");
 
-    cout << "Are you sure bestei? Y\\N";
+    cout << "Are you sure? Y\\N";
     switch (_getch())
     {
     case KEY_Y:
@@ -180,14 +151,13 @@ void drawExitGame()
     }
 }
 
-int drawMenu() 
+int drawMenu()
 {
     while (isGameRunning)
     {
         while (chose == 0)
         {
             drawSudokiMenu();
-
         }
 
         chose = 0;
@@ -206,5 +176,5 @@ int drawMenu()
             drawExitGame();
         }
     }
-    
+
 }
