@@ -23,4 +23,3 @@ void drawHelpMenu();
 void drawExitGame();
 
 int drawMenu();
-

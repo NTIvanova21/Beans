@@ -10,9 +10,13 @@ void sudokuTemplate()
     //Initiate a counter which counts each third row
     int threeRowCounter = 0;
 
+    cout << endl << endl;
+
     for (int i = 0; i < 9; i++)
     {
         threeRowCounter = 0;
+
+        cout << setw(50);
 
         for (int j = 0; j < 9; j++)
         {
@@ -45,13 +49,13 @@ void sudokuTemplate()
 
 //Allow the player to input numbers 
 bool play() {
-    cout << endl << "Enter row number: ";
+    cout << endl << endl << setw(69) << "Enter row number: ";
     cin >> row;
 
-    cout << endl << "Enter column number: ";
+    cout << endl << setw(70) << "Enter column number: ";
     cin >> col;
 
-    cout << endl << "Enter number: ";
+    cout << endl << setw(67) << "Enter number: ";
     cin >> input;
 
     //Check if the inputed number contains a number from 1 to 9
