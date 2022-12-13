@@ -42,7 +42,22 @@ void drawSudokiMenu()
 
     system("cls");
 
-    cout << endl << endl << setw(70) << "Welcome to Sudoki!";
+    cout << setw(76) << "+-------------------------------+" << endl;
+
+    for (int i = 0; i < 43; i++)
+    {
+        cout << "-";
+    }
+
+    cout << "|" << setw(25) << "WELCOME TO SUDOKI!" << setw(7) << "|";
+
+    for (int i = 0; i < 43; i++)
+    {
+        cout << "-";
+    }
+    cout << endl;
+
+    cout << setw(76) << "+-------------------------------+" << endl;
 
     for (int i = 0; i < 5; i++)
     {

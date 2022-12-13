@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="sudoki.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sudoki.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header File">
+      <UniqueIdentifier>{da3dc79f-0f8b-4828-8429-a4bcb30ce0ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source File">
+      <UniqueIdentifier>{1d9d2ee9-0712-4bf9-9ae3-f7e5b288d74c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
