@@ -1,13 +1,15 @@
 #include "menu.h"
 
 int arrow = 0;
-bool chose = 0, isMenuDrawn = 0;
+bool chose = 0;
 
 bool isGameRunning = true;
 
+//Check in which position is the player
 void pointerChange()
 {
 
+    //Detect which key is pressed
     switch (_getch())
     {
     case KEY_UP:
@@ -33,34 +35,43 @@ void pointerChange()
     }
 }
 
+//Generate the Sudoki menu
 void drawSudokiMenu()
 {
     string menu[3] = { "Start", "Help", "Exit" };
 
     system("cls");
 
-    cout << "Welcome to Sudoki!";
+    cout << endl << endl << setw(70) << "Welcome to Sudoki!";
 
     for (int i = 0; i < 5; i++)
     {
         cout << endl;
     }
 
+    //Generate menu options
     for (int i = 0; i < 3; i++)
     {
+        //Print ">>" to the current position
         if (i == arrow)
 
-            cout << ">>" << menu[i] << endl;
+            cout << setw(60) << ">> " << menu[i] << endl << endl;
 
         else
 
-            cout << menu[i] << endl;
+            if (i == 0)
+                cout << setw(62) << menu[i] << endl << endl;
+
+            else
+
+                cout << setw(61) << menu[i] << endl << endl;
 
     }
     pointerChange();
 
 }
 
+//Generate the Help menu
 void drawHelpMenu()
 {
     system("cls");
@@ -92,7 +103,7 @@ void drawHelpMenu()
         cout << " ";
     }
 
-    // Add text for what the goal of the game is
+    // Add text about the goal of the game
 
     cout << endl << setw(75) << "The goal of the game" << endl << endl;
 
@@ -105,7 +116,7 @@ void drawHelpMenu()
 
     cout << endl << endl;
 
-    // Add text for the rules
+    // Add text about the rules
 
     cout << "The rules:" << endl << endl;
 
@@ -126,6 +137,7 @@ void drawHelpMenu()
 
     cout << "Press [ESC] to go back...";
 
+    //Detect if the ESC key is pressed
     switch (_getch())
     {
     case KEY_ESC:
@@ -135,15 +147,19 @@ void drawHelpMenu()
     }
 }
 
+//Generate the Exit menu
 void drawExitGame()
 {
     system("cls");
 
     cout << "Are you sure? Y\\N";
+
+    //Detect if the Y or N key is pressed
     switch (_getch())
     {
     case KEY_Y:
         isGameRunning = false;
+        //Terminate program
         exit(0);
 
     case KEY_N:
@@ -153,6 +169,7 @@ void drawExitGame()
 
 int drawMenu()
 {
+    //Draw the menus before playing the sudoku
     while (isGameRunning)
     {
         while (chose == 0)
@@ -162,6 +179,7 @@ int drawMenu()
 
         chose = 0;
 
+        //Stop the loop and start the sudoku
         if (arrow == 0)
         {
             isGameRunning = false;
