@@ -29,8 +29,8 @@ https://github.com/NTIvanova21/Beans.git
 <h1>📄 Documentation</h1>
 <h3> ➤ <a href="https://github.com/NTIvanova21/Beans/blob/main/Documentation/Documentation.docx">Documentation</a><img src="https://cdn.worldvectorlogo.com/logos/word-1.svg" alt="Word" width="30" height="20"/> </h3>
 <h3> ➤ <a href="https://github.com/NTIvanova21/Beans/blob/main/Documentation/Presentation.pptx">Presentation </a><img src="https://cdn.worldvectorlogo.com/logos/powerpoint-2.svg" alt="PowerPoint" width="30" height="20"/> </h3>
-<h3> ➤ <a href="https://github.com/NTIvanova21/Beans/blob/main/Documentation/QA.xlsx">QA documentation </a></h3>
-<h3> ➤ <a href="https://github.com/NTIvanova21/Beans/blob/main/Documentation/test_plan.docx">Test plan </a></h3>
+<h3> ➤ <a href="https://github.com/NTIvanova21/Beans/blob/main/Documentation/QA.xlsx">QA documentation </a><img src="https://cdn.worldvectorlogo.com/logos/excel-4.svg" alt="Word" width="30" height="20"/></h3>
+<h3> ➤ <a href="https://github.com/NTIvanova21/Beans/blob/main/Documentation/test_plan.docx">Test plan </a><img src="https://cdn.worldvectorlogo.com/logos/word-1.svg" alt="Word" width="30" height="20"/></h3>
 <h1>💻 Used Technologies</h1>
   
 <p><img src="https://seeklogo.com/images/C/c-logo-43CE78FF9C-seeklogo.com.png" alt="C++" width="20" height="20"> C++ - Main Language</p>
